@@ -1,0 +1,125 @@
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="https://go.sdale.com"></script>
+
+<style>
+#carousel {
+
+    overflow: hidden;
+    whites-space: nowrap;
+    width: 100vw;
+    border: solid red 3px;
+    position: relative;
+
+}
+.slide-image {
+    height: 50px;
+    width: 150px;
+    display: inline-block;
+}
+
+.arrow {
+    width: 5%;
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+
+}
+
+#right-arrow  {
+    right 20px;
+}
+#left-arrow  {
+    left: 20px;
+}
+
+.thing {
+    height: 100px;
+    width: 100px;
+}
+
+#one {
+background: green;
+}
+#two {
+background: blue; 
+}
+#three {
+    background: gray; 
+}
+
+.container {
+display: inline-block;
+}
+</style>
+
+<section id="carousel">
+    <span id="left" class="next">&#10094;</span>
+    <span id="right" class="next">&#10095;</span>
+    <div class="slide-image" id="slide-1">
+        Story one heres some news. 
+    </div>
+    <div class="slide-image" id="slide-2">
+        fizz buzz foo bar hello world
+    </div>
+    <div class="slide-image" id="slide-3">
+        When I think I'm using up the time left to thing.j:w
+
+    </div>
+
+</div>
+
+
+</section>
+<div class="container">
+<div id="three" class="thing"></div>
+<div id="one" class="thing" style="display: none;"></div>
+<div id="two" class="thing" style="display: none;"></div>
+</div>
+
+<script>
+    $(document).ready(()=>{
+
+        var interval = window.setInterval(rotateSlides, 5000)
+            function rotateSlides() {
+                    var $firstSlide = $("#carousel").find('div:first')
+                    var width = $firstSlide.width();
+
+                    $firstSlide.animate({marginLeft: -width}, 1000, ()=>{
+                            var $lastSlide = $("#carousel").find('div:last')
+                            $lastSlide.after($firstSlide)
+                            $firstSlide.css({marginLeft: 0})
+                    })
+                    //animation
+
+            }
+
+
+            $('#right').click(nextSlide)
+            $('#left').click(previousSlide)
+            function nextSlide(){
+                    window.clearInterval(interval)
+                    var $currentSlide = $('#carousel').find('div:first')
+                    var width = $currentSlide.width()
+                    $currentSlide.animate({marginLeft: -width}, 1000, ()=>{
+                            var $lastSlide = $('#carousel').find('div:last')
+                            $lastSlide.after($currentSlide)
+                            $currentSlide.css({marginLeft: 0})
+
+                            interval = window.setInterval(rotateSlides, 5000)
+
+                    })
+            }
+            function previousSlide(){
+                    window.clearInterval(interval)
+                    var $currentSlide = $('#carousel').find('div:first')
+                    var width = $currentSlide.width()
+                    var $previousSlide = $('#carousel').find('div:last')
+                    $currentSlide.before($previousSlide)
+                    $previousSlide.animate({marginLeft: 0}, 1000, ()=>{
+                            interval = window.setInterval(rotateSlides, 5000)
+
+                    })
+
+            }
+
+        })
+</script>
