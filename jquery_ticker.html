@@ -78,22 +78,16 @@ display: inline-block;
 <script>
 
     $(document).ready(()=>{
-    let index = 1
-    function increment_index (idx) {
-        if(idx >= 3) {
-            index = 0
-
-        } else {
-            index += 1
-        }
-    }
+        var content = [
+        {1: "hello world"},
+        {2: "foo bar"},
+        {3: "black white"}
+        ]
 
 
         var interval = window.setInterval(rotateSlides, 5000)
             function rotateSlides() {
                 const cards = $("#carousel").find('div')
-                let cur_card = cards[index]
-                cur_card.hide()
 
             }
 
