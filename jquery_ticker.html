@@ -57,10 +57,10 @@ display: inline-block;
     <div class="slide-image" id="slide-1">
         Story one heres some news. 
     </div>
-    <div class="slide-image" id="slide-2">
+    <div class="slide-image" id="slide-2" style="display: none;">
         fizz buzz foo bar hello world
     </div>
-    <div class="slide-image" id="slide-3">
+    <div class="slide-image" id="slide-3" style="display: none;">
         When I think I'm using up the time left to thing.j:w
 
     </div>
@@ -76,19 +76,24 @@ display: inline-block;
 </div>
 
 <script>
+
     $(document).ready(()=>{
+    let index = 1
+    function increment_index (idx) {
+        if(idx >= 3) {
+            index = 0
+
+        } else {
+            index += 1
+        }
+    }
+
 
         var interval = window.setInterval(rotateSlides, 5000)
             function rotateSlides() {
-                    var $firstSlide = $("#carousel").find('div:first')
-                    var width = $firstSlide.width();
-
-                    $firstSlide.animate({marginLeft: -width}, 1000, ()=>{
-                            var $lastSlide = $("#carousel").find('div:last')
-                            $lastSlide.after($firstSlide)
-                            $firstSlide.css({marginLeft: 0})
-                    })
-                    //animation
+                const cards = $("#carousel").find('div')
+                let cur_card = cards[index]
+                cur_card.hide()
 
             }
 
