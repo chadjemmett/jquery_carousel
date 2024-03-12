@@ -55,40 +55,40 @@ display: inline-block;
     <span id="left" class="next">&#10094;</span>
     <span id="right" class="next">&#10095;</span>
     <div class="slide-image" id="slide-1">
-        Story one heres some news. 
-    </div>
-    <div class="slide-image" id="slide-2" style="display: none;">
-        fizz buzz foo bar hello world
-    </div>
-    <div class="slide-image" id="slide-3" style="display: none;">
-        When I think I'm using up the time left to thing.j:w
-
     </div>
 
 </div>
 
 
 </section>
-<div class="container">
-<div id="three" class="thing"></div>
-<div id="one" class="thing" style="display: none;"></div>
-<div id="two" class="thing" style="display: none;"></div>
-</div>
 
 <script>
 
     $(document).ready(()=>{
         var content = [
-        {1: "hello world"},
-        {2: "foo bar"},
-        {3: "black white"}
+        {'copy': "hello world"},
+        {'copy': "foo bar"},
+        {'copy': "black white"},
         ]
+
+        const news_slide = $(".slide-image").append(content[0]['copy'])
+        let counter = 1
+
+        function rotate_index () {
+            if ( counter >= content.length - 1) {
+                counter = 0
+            } else {
+                counter += 1
+            }
+        }
 
 
         var interval = window.setInterval(rotateSlides, 5000)
             function rotateSlides() {
-                const cards = $("#carousel").find('div')
-
+                const card = $(".slide-image")
+                card.fadeOut(500).empty()
+                card.append(content[counter]['copy'])
+                rotate_index()
             }
 
 
