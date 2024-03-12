@@ -1,6 +1,11 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="https://go.sdale.com"></script>
 
 <style>
+body {
+ background: black;
+ color: white;
+
+}
 #carousel {
 
     overflow: hidden;
@@ -14,6 +19,7 @@
     height: 50px;
     width: 150px;
     display: inline-block;
+    border: solid green 1px;
 }
 
 .arrow {
@@ -66,13 +72,15 @@ display: inline-block;
 
     $(document).ready(()=>{
         var content = [
-        {'copy': "hello world"},
-        {'copy': "foo bar"},
-        {'copy': "black white"},
+        {'copy': "hello world ZERO"},
+        {'copy': "foo bar ONE"},
+        {'copy': "black white TWO"},
+        {'copy': "THREE"},
+        {'copy': "FOUR"},
         ]
 
         const news_slide = $(".slide-image").append(content[0]['copy'])
-        let counter = 1
+        let counter = 0
 
         function rotate_index () {
             if ( counter >= content.length - 1) {
@@ -84,11 +92,14 @@ display: inline-block;
 
 
         var interval = window.setInterval(rotateSlides, 5000)
-            function rotateSlides() {
-                const card = $(".slide-image")
-                card.fadeOut(500).empty()
-                card.append(content[counter]['copy'])
-                rotate_index()
+            function rotateSlides() { 
+                    rotate_index()
+                    const card = $(".slide-image")
+                    card.fadeOut(100, ()=> {
+                            card.empty().append(content[counter]['copy']).fadeIn(100)
+
+                        })
+
             }
 
 
