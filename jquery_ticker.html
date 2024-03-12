@@ -64,9 +64,9 @@ display: inline-block;
 
 <section id="carousel">
     <span id="left" class="next">&#11164;</span>
-    <span id="right" class="next">&#11166;</span>
     <div class="slide-image" id="slide-1">
     </div>
+    <span id="right" class="next">&#11166;</span>
 
 </div>
 
@@ -86,7 +86,6 @@ display: inline-block;
 
         const news_slide = $(".slide-image").append(content[0]['copy'])
         let counter = 0
-            console.log(counter)
 
         function rotate_index (increment) {
                 if (counter <= content.length - 1 || counter >= 0) {
@@ -106,7 +105,6 @@ display: inline-block;
 
         var interval = window.setInterval(rotateSlides, 5000)
             function rotateSlides() { 
-                console.log("rotate", counter)
                     rotate_index(1)
                     const card = $(".slide-image")
                     card.fadeOut(100, ()=> {
@@ -130,7 +128,6 @@ display: inline-block;
             }
 
             function previousSlide(){
-                    console.log(counter)
                     window.clearInterval(interval)
                     const card = $(".slide-image")
                     rotate_index(-1)
