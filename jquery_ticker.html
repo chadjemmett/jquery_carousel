@@ -86,19 +86,28 @@ display: inline-block;
 
         const news_slide = $(".slide-image").append(content[0]['copy'])
         let counter = 0
+            console.log(counter)
 
-        function rotate_index () {
-            if ( counter >= content.length - 1) {
-                counter = 0
-            } else {
-                counter += 1
-            }
+        function rotate_index (increment) {
+                if (counter <= content.length - 1 || counter >= 0) {
+                        counter += increment
+                    } 
+                if ( counter >= content.length -1 ) {
+                            counter = 0 
+
+                    }
+
+                if ( counter < 0) {
+                        counter = content.length -1
+
+                    }
         }
 
 
         var interval = window.setInterval(rotateSlides, 5000)
             function rotateSlides() { 
-                    rotate_index()
+                console.log("rotate", counter)
+                    rotate_index(1)
                     const card = $(".slide-image")
                     card.fadeOut(100, ()=> {
                             card.empty().append(content[counter]['copy']).fadeIn(100)
@@ -112,27 +121,23 @@ display: inline-block;
             $('#left').click(previousSlide)
             function nextSlide(){
                     window.clearInterval(interval)
-                    var $currentSlide = $('#carousel').find('div:first')
-                    var width = $currentSlide.width()
-                    $currentSlide.animate({marginLeft: -width}, 1000, ()=>{
-                            var $lastSlide = $('#carousel').find('div:last')
-                            $lastSlide.after($currentSlide)
-                            $currentSlide.css({marginLeft: 0})
-
-                            interval = window.setInterval(rotateSlides, 5000)
-
-                    })
+                    const card = $(".slide-image")
+                    rotate_index(1)
+                    card.fadeOut(100, ()=> {
+                            card.empty().append(content[counter]['copy']).fadeIn(100)
+                        })
+                    interval = window.setInterval(rotateSlides, 5000)
             }
-            function previousSlide(){
-                    window.clearInterval(interval)
-                    var $currentSlide = $('#carousel').find('div:first')
-                    var width = $currentSlide.width()
-                    var $previousSlide = $('#carousel').find('div:last')
-                    $currentSlide.before($previousSlide)
-                    $previousSlide.animate({marginLeft: 0}, 1000, ()=>{
-                            interval = window.setInterval(rotateSlides, 5000)
 
-                    })
+            function previousSlide(){
+                    console.log(counter)
+                    window.clearInterval(interval)
+                    const card = $(".slide-image")
+                    rotate_index(-1)
+                    card.fadeOut(100, ()=> {
+                            card.empty().append(content[counter]['copy']).fadeIn(100)
+                        })
+                    interval = window.setInterval(rotateSlides, 5000)
 
             }
 
