@@ -1,87 +1,21 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="https://go.sdale.com"></script>
-
-<style>
-body {
- background: black;
- color: white;
-
-}
-#carousel {
-
-    overflow: hidden;
-    whites-space: nowrap;
-    width: 100vw;
-    border: solid red 3px;
-    position: relative;
-
-}
-.slide-image {
-    height: 50px;
-    width: 150px;
-    display: inline-block;
-    border: solid green 1px;
-}
-
-.arrow {
-    width: 5%;
-    position: absolute;
-    top: 50%;
-    cursor: pointer;
-
-}
-
-.next {
-    font-size: 4em;
-
-}
-
-#right-arrow  {
-    right 20px;
-}
-#left-arrow  {
-    left: 20px;
-}
-
-.thing {
-    height: 100px;
-    width: 100px;
-}
-
-#one {
-background: green;
-}
-#two {
-background: blue; 
-}
-#three {
-    background: gray; 
-}
-
-.container {
-display: inline-block;
-}
-</style>
+<link rel="stylesheet"  href="styles.css">
 
 <section id="carousel">
-    <span id="left" class="next">&#11164;</span>
-    <div class="slide-image" id="slide-1">
-    </div>
-    <span id="right" class="next">&#11166;</span>
-
-</div>
-
-
+    <span id="left" class="next">&#10094;</span>
+    <div class="slide-image"></div>
+    <span id="right" class="next">&#10095;</span>
 </section>
 
 <script>
 
     $(document).ready(()=>{
         var content = [
-        {'copy': "hello world ZERO"},
-        {'copy': "foo bar ONE"},
-        {'copy': "black white TWO"},
-        {'copy': "THREE"},
-        {'copy': "FOUR"},
+        {'copy': "hello world ZERO There's something that will alwasys be the thing"},
+        {'copy': "foo bar ONE We should nuke it from orbit, it's the only way to be sure."},
+        {'copy': "black white TWO back to school rally is coming up. Be prepared"},
+        {'copy': "THREE Check out peachjar. It's cool and fund."},
+        {'copy': "FOUR rockin gutiar an steady baselines, that's what I'm known for!"},
         ]
 
         const news_slide = $(".slide-image").append(content[0]['copy'])
@@ -93,12 +27,9 @@ display: inline-block;
                     } 
                 if ( counter >= content.length -1 ) {
                             counter = 0 
-
                     }
-
                 if ( counter < 0) {
                         counter = content.length -1
-
                     }
         }
 
@@ -109,11 +40,8 @@ display: inline-block;
                     const card = $(".slide-image")
                     card.fadeOut(100, ()=> {
                             card.empty().append(content[counter]['copy']).fadeIn(100)
-
                         })
-
             }
-
 
             $('#right').click(nextSlide)
             $('#left').click(previousSlide)
@@ -126,7 +54,6 @@ display: inline-block;
                         })
                     interval = window.setInterval(rotateSlides, 5000)
             }
-
             function previousSlide(){
                     window.clearInterval(interval)
                     const card = $(".slide-image")
@@ -135,8 +62,6 @@ display: inline-block;
                             card.empty().append(content[counter]['copy']).fadeIn(100)
                         })
                     interval = window.setInterval(rotateSlides, 5000)
-
             }
-
         })
 </script>
