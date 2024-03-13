@@ -18,7 +18,8 @@
         {'copy': "FOUR rockin gutiar an steady baselines, that's what I'm known for!"},
         ]
 
-        const news_slide = $(".slide-image").append(content[0]['copy'])
+
+        if ( content.length > 0 ){const news_slide = $(".slide-image").append(content[0]['copy'])
         let counter = 0
 
         function rotate_index (increment) {
@@ -63,5 +64,9 @@
                         })
                     interval = window.setInterval(rotateSlides, 5000)
             }
+        } else {
+            $(".slide-image").append("No news today")
+
+        }
         })
 </script>
